@@ -20,12 +20,9 @@ FCKConfig.LinkUploadAllowedExtensions = "\.(asf|avi|doc|flv|gif|htm|html|xhtml|j
 
 FCKConfig.FlashUploadAllowedExtensions = "\.(swf|flv)$" ;
 
-FCKConfig.SpellerPagesServerScript = FCKRelativePath + '/fckeditor/check_spelling';
-FCKConfig.AllowQueryStringDebug = false;
-FCKConfig.SpellChecker = 'SpellerPages';
-
 FCKConfig.ProtectedSource.Add(/<\/?r:*?>/gi);
-FCKConfig.ProtectedTags = '<%= @fck_tag_list %>' ;
+FCKConfig.ProtectedSource.Add( /(<r:[^\>]+>[\s|\S]*?<\/r:[^\>]+>)|(<r:[^\>]+\/>)/gi ) ; // Radiant style tags <r:breadcrumbs />
+FCKConfig.ProtectedTags = '<%= @fck_tags.join("|") %>' ;
 
 //FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/silver/';
 
@@ -44,5 +41,3 @@ FCKConfig.ToolbarSets["Simple"] = [
 	['TextColor','BGColor'],
 	['-','About']
 ];
-
-
